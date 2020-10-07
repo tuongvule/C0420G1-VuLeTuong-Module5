@@ -1,0 +1,5 @@
+<h1>color-picker</h1>
+<!--<p>Chọn màu: <input type="color" (change)="changeColor($event.target.value)"></p>-->
+<p>Chọn màu: <input type="color" [(ngModel)]="color" value="red" ></p>
+<p>Mã màu: {{color}}</p>
+<div [style.background-color]="color" style="width: 500px; height: 600px"></div>
