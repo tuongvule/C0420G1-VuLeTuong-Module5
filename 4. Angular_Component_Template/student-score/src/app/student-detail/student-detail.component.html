@@ -1,0 +1,42 @@
+<div *ngIf="studentDetail1" id="detail" class="modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <form action="/create" method="post">
+          <div class="modal-header" style="background-color: #008000;color: white">
+            <h4 class="modal-title">Student</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          </div>
+          <div class="modal-body">
+            <div class="form-group">
+              <label>Id: {{studentDetail1.studentId}}</label>
+            </div>
+            <div class="form-group">
+              <label>Name: {{studentDetail1.studentName}}</label>
+            </div>
+            <div class="form-group">
+              <label>Age: {{studentDetail1.studentPhone}}</label>
+            </div>
+            <div class="form-group">
+              <label>Email: {{studentDetail1.studentEmail}}</label>
+            </div>
+            <div class="form-group">
+              <label>Email: {{studentDetail1.studentAddress}}</label>
+            </div>
+            <div class="form-group">
+              <label>Mark: {{studentDetail1.studentMark}}</label>
+            </div>
+            <div class="form-group">
+              <label>Mark:</label>
+              <input type="number" min="0" max="10" (change)="getMarkFromStudentDetail($event.target.value)">
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+</div>
+
+
+
+
+
+

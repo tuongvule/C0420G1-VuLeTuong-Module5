@@ -1,0 +1,25 @@
+
+<ng-container *ngIf="studentEditInRow">
+<!--  <form  #formEditInRow="ngForm" (ngSubmit)="onSubmit(formEditInRow.value)" >-->
+  <tr>
+    <td>{{studentEditInRow.studentId}}</td>
+    <td><input type="text" name="studentName" class="form-control" [(ngModel)]="studentEditInRow.studentName"></td>
+    <td><input type="text" name="studentPhone" class="form-control" [(ngModel)]="studentEditInRow.studentPhone"></td>
+    <td><input type="text" name="studentEmail" class="form-control" [(ngModel)]="studentEditInRow.studentEmail"></td>
+    <td><input type="text" name="studentAddress" class="form-control"  [(ngModel)]="studentEditInRow.studentAddress"></td>
+    <td><input type="number" min="0" max="10" name="studentMark" class="form-control" [(ngModel)]="studentEditInRow.studentMark"></td>
+    <td style="color: red; font-weight: bolder" >FAIL</td>
+<!--    <ng-template #block>-->
+<!--      <td style="color: blue; font-weight: bolder">PASS</td>-->
+<!--    </ng-template>-->
+    <td>
+    <a href="#detail" class="view" title="Detail" data-toggle="modal" ><i class="material-icons">&#xE417;</i></a>
+    <a href="#edit" class="edit" title="Edit" data-toggle="modal" ><i class="material-icons">&#xE254;</i></a>
+    <a href="#delete" class="delete" title="Delete" data-toggle="modal"  ><i class="material-icons">&#xE872;</i></a>
+    <a href="" class="delete" title="Add" data-toggle="modal" (click)="getCheck()"><i class="material-icons">&#xE03B;</i></a>
+  </td>
+  </tr>
+<!--  </form>-->
+  </ng-container>
+
+

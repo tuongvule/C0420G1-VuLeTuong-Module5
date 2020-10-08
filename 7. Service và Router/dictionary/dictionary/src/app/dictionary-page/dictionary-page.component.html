@@ -1,0 +1,14 @@
+<p>dictionary-page works!</p>
+<h2>English-Vietnamese Dictionary</h2>
+<input type="text" (change)="search($event.target.value)">
+<p *ngIf="word">
+  Nghĩa của từ {{word.key}}: {{word.meaning}}
+</p>
+<!--<p *ngFor="let word of words">-->
+<!--  <a [routerLink]="['/dictionary', word.key]">-->
+<!--    {{ word.key }}-->
+<!--  </a>-->
+<!--</p>-->
+<br>
+<!--<a href="/dictionary"><button>Back</button></a>-->
+<a routerLink="/dictionary"><button>Back</button></a>

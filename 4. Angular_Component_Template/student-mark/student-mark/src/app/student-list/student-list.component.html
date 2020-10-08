@@ -1,0 +1,253 @@
+<br>
+
+<div class="container">
+  <div style="max-width: 100%; ">
+        <h2 style="color: white; text-shadow: 2px 2px 2px blue">Student Manager</h2>
+  </div>
+</div>
+
+<br>
+<div class="table-title">
+  <div class="row">
+    <div class="col-sm-3" style="max-width: 28%">
+        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#addStudentForm">
+          Add Student Reactive Form
+        </button>
+    </div>
+    <div class="col-sm-3" style="max-width: 34%">
+      <a href="#add" data-toggle="modal" class="btn btn-success" ><i class="fa fa-plus"></i><span>Add New Student</span></a>
+    </div>
+
+    <div class="col-sm-3" style="max-width: 25%;margin-right: 90px; " >
+      <form action="/" style="display: flex;     margin-left: -55px;">
+        <select class="btn btn-success" name="by">
+          <option value="all">All</option>
+          <option value="discount">Name</option>
+          <option value="startTime">Phone</option>
+          <option value="endTime">Email</option>
+          <option value="endTime">Address</option>
+        </select>
+        <input class="search-txt" type="text" name="search" placeholder="Type to search" >
+        <div>
+          <button class="btn btn-success" style="height: 37px; width: 146px;" >Search</button>
+        </div>
+      </form>
+    </div>
+
+  </div>
+</div>
+
+<table class="table table-striped">
+  <thead class="thead-dark" >
+  <tr>
+   <td>Id</td>
+   <td>Name</td>
+    <td>Phone</td>
+    <td>Email</td>
+    <td>Address</td>
+    <td>Mark</td>
+    <td>Result</td>
+    <td>Actions</td>
+  </tr>
+  </thead>
+  <tbody>
+
+
+<!--  <app-test></app-test>-->
+  <ng-container *ngFor="let student of students">
+    <ng-container *ngIf="check, else blockA">
+      <tr>
+        <td>{{student.studentId}}</td>
+        <td>{{student.studentName}}</td>
+        <td>{{student.studentPhone}}</td>
+        <td>{{student.studentEmail}}</td>
+        <td>{{student.studentAddress}}</td>
+        <td>{{student.studentMark}}</td>
+        <td style="color: red; font-weight: bolder" *ngIf="student.studentMark <5 || student.studentMark == null, else block" >FAIL</td>
+        <ng-template #block>
+          <td style="color: blue; font-weight: bolder">PASS</td>
+        </ng-template>
+        <td>
+          <!--        <a href="#detail" data-toggle="modal" ><button class="btn btn-success" (click)="showStudentDetail(student)">Detail</button></a>-->
+          <!--        <a href="#edit" data-toggle="modal" ><button class="btn btn-success" (click)="showStudentEdit(student)">Edit</button></a>-->
+          <!--        <a href="#delete" data-toggle="modal" ><button class="btn btn-success" (click)="showStudentDelete(student)">Delete</button></a>-->
+
+          <a href="#detail" class="view" title="Detail" data-toggle="modal" (click)="showStudentDetail(student)"><i class="material-icons">&#xE417;</i></a>
+          <a href="#edit" class="edit" title="Edit" data-toggle="modal" (click)="showStudentEdit(student)"><i class="material-icons">&#xE254;</i></a>
+          <a href="#delete" class="delete" title="Delete" data-toggle="modal" (click)="showStudentDelete(student)"><i class="material-icons">&#xE872;</i></a>
+          <a href="#editInRow" data-toggle="modal" ><button class="btn btn-success" (click)="showStudentEditInRow(student)">Edit in row</button></a>
+          <a href="#editStudentForm" data-toggle="modal" ><button class="btn btn-success" (click)="editReactive(student)">Edit Relative</button></a>
+        </td>
+      </tr>
+
+    </ng-container>
+    <ng-template #blockA>
+      <tr *ngIf="student.studentId != idEditInRow" >
+        <td>{{student.studentId}}</td>
+        <td>{{student.studentName}}</td>
+        <td>{{student.studentPhone}}</td>
+        <td>{{student.studentEmail}}</td>
+        <td>{{student.studentAddress}}</td>
+        <td>{{student.studentMark}}</td>
+        <td style="color: red; font-weight: bolder" *ngIf="student.studentMark <5 || student.studentMark == null, else block" >FAIL</td>
+        <ng-template #block>
+          <td style="color: blue; font-weight: bolder">PASS</td>
+        </ng-template>
+
+        <td>
+          <!--        <a href="#detail" data-toggle="modal" ><button class="btn btn-success" (click)="showStudentDetail(student)">Detail</button></a>-->
+          <!--        <a href="#edit" data-toggle="modal" ><button class="btn btn-success" (click)="showStudentEdit(student)">Edit</button></a>-->
+          <!--        <a href="#delete" data-toggle="modal" ><button class="btn btn-success" (click)="showStudentDelete(student)">Delete</button></a>-->
+
+          <a href="#detail" class="view" title="Detail" data-toggle="modal" (click)="showStudentDetail(student)"><i class="material-icons">&#xE417;</i></a>
+          <a href="#edit" class="edit" title="Edit" data-toggle="modal" (click)="showStudentEdit(student)"><i class="material-icons">&#xE254;</i></a>
+          <a href="#delete" class="delete" title="Delete" data-toggle="modal" (click)="showStudentDelete(student)"><i class="material-icons">&#xE872;</i></a>
+          <a href="#editInRow" data-toggle="modal" ><button class="btn btn-success" (click)="showStudentEditInRow(student)">Edit in row</button></a>
+        </td>
+      </tr>
+
+    </ng-template>
+    <app-student-edit-row   [studentEditInRow]="studentEditInRow" [check]="check" *ngIf="student.studentId == idEditInRow" (check1)="getCheck($event)"></app-student-edit-row>
+
+
+  </ng-container>
+
+  </tbody>
+
+</table>
+<!-- START ADD STUDENT FORM-->
+<div class="modal fade" id="addStudentForm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header border-bottom-0">
+        <h5 class="modal-title" id="exampleModalLabel">Add New Student</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form [formGroup]="addFormStudent" >
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="id">Id</label>
+            <input type="text"
+                   formControlName="studentId"
+                   class="form-control" id="id" placeholder="Enter Id">
+          </div>
+          <div class="alert alert-danger" role="alert"
+               *ngIf="addFormStudent.get('studentId').invalid && addFormStudent.get('studentId').touched">
+            <p *ngIf="addFormStudent.get('studentId').hasError('required')">Id is Required</p>
+            <p *ngIf="addFormStudent.get('studentId').hasError('min')">Id >= 0</p>
+            <p *ngIf="addFormStudent.get('studentId').hasError('max')">Id <= 10</p>
+          </div>
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text"
+                   formControlName="studentName"
+                   class="form-control" id="name" placeholder="Enter Name">
+          </div>
+          <div class="alert alert-danger" role="alert"
+               *ngIf="addFormStudent.get('studentName').invalid && addFormStudent.get('studentName').touched">
+            <p *ngIf="addFormStudent.get('studentName').hasError('required')">Name is required</p>
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="text"
+                   formControlName="studentEmail"
+                   class="form-control" id="email" placeholder="Enter Email">
+          </div>
+          <div class="form-group">
+            <label for="address">Address</label>
+            <input type="text"
+                   formControlName="studentAddress"
+                   class="form-control" id="address" placeholder="Enter Address">
+          </div>
+          <div class="form-group">
+            <label for="Phone">Phone</label>
+            <input type="text"
+                   formControlName="studentPhone"
+                   class="form-control" id="phone" placeholder="Enter Phone">
+          </div>
+          <div class="alert alert-danger" role="alert"
+               *ngIf="addFormStudent.get('studentPhone').invalid && addFormStudent.get('studentPhone').touched">
+            <p *ngIf="addFormStudent.get('studentPhone').hasError('phoneInvalid')">Phone Invalid</p>
+            <p *ngIf="addFormStudent.get('studentPhone').hasError('required')">Phone is required</p>
+
+          </div>
+
+        </div>
+        <div class="modal-footer border-top-0 d-flex justify-content-center">
+          <button  type="submit" class="btn btn-success" data-dismiss="modal" (click)="addFormStudent1()">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<!-- END ADD STUDENT FORM-->
+<!-- START EDIT STUDENT FORM-->
+<div class="modal fade" id="editStudentForm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header border-bottom-0">
+        <h5 class="modal-title" id="exampleModalLabel1">Edit Student</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form [formGroup]="editFormStudent" >
+        <div class="modal-body">
+          <div class="form-group">
+            <input type="hidden"
+                   formControlName="studentId"
+                   class="form-control" id="studentId" placeholder="Enter Id">
+          </div>
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text"
+                   formControlName="studentName"
+                   class="form-control" id="studentName" placeholder="Enter Name">
+          </div>
+          <div class="alert alert-danger" role="alert"
+               *ngIf="editFormStudent.get('studentName').invalid && editFormStudent.get('studentName').touched">
+            <p *ngIf="editFormStudent.get('studentName').hasError('required')">Name is required</p>
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="text"
+                   formControlName="studentEmail"
+                   class="form-control" id="studentEmail" placeholder="Enter Email">
+          </div>
+          <div class="form-group">
+            <label for="address">Address</label>
+            <input type="text"
+                   formControlName="studentAddress"
+                   class="form-control" id="studentAddress" placeholder="Enter Address">
+          </div>
+          <div class="form-group">
+            <label for="Phone">Phone</label>
+            <input type="text"
+                   formControlName="studentPhone"
+                   class="form-control" id="studentPhone" placeholder="Enter Phone">
+          </div>
+          <div class="alert alert-danger" role="alert"
+               *ngIf="editFormStudent.get('studentPhone').invalid && editFormStudent.get('studentPhone').touched">
+            <p *ngIf="editFormStudent.get('studentPhone').hasError('phoneInvalid')">Phone Invalid</p>
+            <p *ngIf="editFormStudent.get('studentPhone').hasError('required')">Phone is required</p>
+
+          </div>
+
+        </div>
+        <div class="modal-footer border-top-0 d-flex justify-content-center">
+          <button  type="submit" class="btn btn-success" data-dismiss="modal" (click)="editFormStudent1(editFormStudent)">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<!-- END EDIT STUDENT FORM-->
+
+<app-student-detail [studentDetail1]="studentDetail" (markOutput)="getMarkFromDetail($event)"></app-student-detail>
+<app-student-edit [studentEdit1]="studentEdit"></app-student-edit>
+<app-student-add (studentAdd1)="addStudent($event)"></app-student-add>
+
+
+

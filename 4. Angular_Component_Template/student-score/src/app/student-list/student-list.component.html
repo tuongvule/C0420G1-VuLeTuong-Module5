@@ -1,0 +1,64 @@
+<h1 style="color: red; text-shadow: 2px 2px 2px blue">List of Students</h1>
+<br><br>
+<div class="table-title">
+  <div class="row">
+    <div class="col-sm-6" style="max-width: 28%">
+      <h2 style="color: white; text-shadow: 2px 2px 2px blue">Student Manager</h2>
+    </div>
+
+    <div class="col-sm-3" style="max-width: 34%">
+      <a href="#add" class="btn btn-success" data-toggle="modal"><i class="fa fa-plus"></i><span>Add New Student</span></a>
+    </div>
+
+    <div class="col-sm-3" style="max-width: 25%;margin-right: 90px; " >
+      <form action="/" style="display: flex;     margin-left: -55px;">
+        <select class="btn btn-success" name="by">
+          <option value="all">All</option>
+          <option value="discount">Name</option>
+          <option value="startTime">Age</option>
+          <option value="endTime">Phone</option>
+        </select>
+        <input class="search-txt" type="text" name="search" placeholder="Type to search" value="{{search}}">
+        <div>
+          <button class="btn btn-success" style="height: 37px; width: 146px;" >Search</button>
+        </div>
+      </form>
+    </div>
+
+  </div>
+</div>
+
+<table class="table table-striped">
+  <thead class="thead-dark" >
+    <tr>
+      <td>Id</td>
+      <td>Name</td>
+      <td>Phone</td>
+      <td>Email</td>
+      <td>Address</td>
+      <td>Mark</td>
+      <td>Result</td>
+      <td>Action</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let student of students">
+      <td>{{student.studentId}}</td>
+      <td>{{student.studentName}}</td>
+      <td>{{student.studentPhone}}</td>
+      <td>{{student.studentEmail}}</td>
+      <td>{{student.studentAddress}}</td>
+      <td>{{student.studentMark}}</td>
+      <td *ngIf="student.studentMark<5||student.studentMark==null, else block" style="color: red; font-weight: bold">FAIL</td>
+      <ng-template #block>
+        <td style="color: blue; font-weight: bold">PASS</td>
+      </ng-template>
+      <td>
+        <a href="#detail" data-toggle="modal"><button class="btn btn-success" (click)="changeStudent(student)">Detail</button></a>
+        <a href="#edit" data-toggle="modal"><button class="btn btn-success" (click)="showEditStudent(student)">Edit</button></a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<app-student-detail [studentDetail1]="studentDetail" (markOutput)="getMark($event)"></app-student-detail>
+<app-edit-student [studentEdit]="studentEdit"></app-edit-student>

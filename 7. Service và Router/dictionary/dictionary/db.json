@@ -1,0 +1,29 @@
+{
+  "students": [
+    {
+      "id": 1,
+      "name": "viet co ho",
+      "address": "quang binh"
+    },
+    {
+      "id": 2,
+      "name": "viet co ho",
+      "address": "quang binh"
+    },
+    {
+      "id": 3,
+      "name": "viet co ho",
+      "address": "quang binh"
+    },
+    {
+      "id": 4,
+      "name": "viet co ho",
+      "address": "quang binh"
+    },
+    {
+      "name": "viet king",
+      "address": "quang binh",
+      "id": 5
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+thead{
+  background-color: green;
+  font-weight: bold;
+}
+table{
+  width: 1160px;
+  color: white;
+}
+tbody{
+  background-color: #fff;
+  color: black;
+}
